@@ -11,6 +11,7 @@ namespace _1lab
         public double simulationTime = 0;
         public int chosenMethod = -1;
         public List<Planet> planets = new List<Planet>();
+        private const double G = 6.67430e-11;
 
         public ParamsForm()
         {
@@ -26,6 +27,7 @@ namespace _1lab
             {
                 systemDataGridView.Rows.Add();
             }
+
             double prevX = 0;
 
             for (int i = 0; i < planetCounter; ++i)
@@ -47,11 +49,9 @@ namespace _1lab
 
                 systemDataGridView.Rows[i].Cells[3].Value = (0).ToString();
 
-
-
                 if (i != 0)
                 {
-                    systemDataGridView.Rows[i].Cells[4].Value = (23297.870487037 * Math.Pow(0.78, i - 1)).ToString();
+                    systemDataGridView.Rows[i].Cells[4].Value = (Math.Sqrt(G * 1.2166e30 / prevX)).ToString();
                     systemDataGridView.Rows[i].Cells[5].Value = (i * 6.083e24).ToString();
                 }
                 else

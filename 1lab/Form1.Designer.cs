@@ -144,8 +144,9 @@
             this.allForceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.allForceTextBox.Name = "allForceTextBox";
             this.allForceTextBox.ReadOnly = true;
-            this.allForceTextBox.Size = new System.Drawing.Size(110, 20);
+            this.allForceTextBox.Size = new System.Drawing.Size(137, 20);
             this.allForceTextBox.TabIndex = 3;
+            this.allForceTextBox.Text = "0";
             // 
             // currTimeTextBox
             // 
@@ -153,8 +154,9 @@
             this.currTimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.currTimeTextBox.Name = "currTimeTextBox";
             this.currTimeTextBox.ReadOnly = true;
-            this.currTimeTextBox.Size = new System.Drawing.Size(110, 20);
+            this.currTimeTextBox.Size = new System.Drawing.Size(137, 20);
             this.currTimeTextBox.TabIndex = 4;
+            this.currTimeTextBox.Text = "0";
             // 
             // label3
             // 
@@ -171,8 +173,9 @@
             this.massCenterXTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterXTextBox.Name = "massCenterXTextBox";
             this.massCenterXTextBox.ReadOnly = true;
-            this.massCenterXTextBox.Size = new System.Drawing.Size(110, 20);
+            this.massCenterXTextBox.Size = new System.Drawing.Size(134, 20);
             this.massCenterXTextBox.TabIndex = 6;
+            this.massCenterXTextBox.Text = "0";
             // 
             // label4
             // 
@@ -189,8 +192,9 @@
             this.massCenterYTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterYTextBox.Name = "massCenterYTextBox";
             this.massCenterYTextBox.ReadOnly = true;
-            this.massCenterYTextBox.Size = new System.Drawing.Size(110, 20);
+            this.massCenterYTextBox.Size = new System.Drawing.Size(134, 20);
             this.massCenterYTextBox.TabIndex = 8;
+            this.massCenterYTextBox.Text = "0";
             // 
             // label5
             // 
@@ -205,6 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 561);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.massCenterYTextBox);
@@ -219,10 +224,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
