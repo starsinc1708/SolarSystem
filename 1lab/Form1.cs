@@ -125,7 +125,9 @@ namespace _1lab
             }
 
             simulation_len -= simulation_step;
-            currTimeTextBox.Text = simulation_len.ToString();
+
+            if(simulation_len < 0) currTimeTextBox.Text = (0).ToString();
+            else currTimeTextBox.Text = simulation_len.ToString();
 
             if (simulation_len <= 0)
             {

@@ -141,6 +141,7 @@
             // allForceTextBox
             // 
             this.allForceTextBox.Location = new System.Drawing.Point(12, 44);
+            this.allForceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.allForceTextBox.Name = "allForceTextBox";
             this.allForceTextBox.Size = new System.Drawing.Size(110, 20);
             this.allForceTextBox.TabIndex = 3;
@@ -148,6 +149,7 @@
             // currTimeTextBox
             // 
             this.currTimeTextBox.Location = new System.Drawing.Point(12, 83);
+            this.currTimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.currTimeTextBox.Name = "currTimeTextBox";
             this.currTimeTextBox.Size = new System.Drawing.Size(110, 20);
             this.currTimeTextBox.TabIndex = 4;
@@ -164,6 +166,7 @@
             // massCenterXTextBox
             // 
             this.massCenterXTextBox.Location = new System.Drawing.Point(12, 122);
+            this.massCenterXTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterXTextBox.Name = "massCenterXTextBox";
             this.massCenterXTextBox.Size = new System.Drawing.Size(110, 20);
             this.massCenterXTextBox.TabIndex = 6;
@@ -180,6 +183,7 @@
             // massCenterYTextBox
             // 
             this.massCenterYTextBox.Location = new System.Drawing.Point(12, 161);
+            this.massCenterYTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterYTextBox.Name = "massCenterYTextBox";
             this.massCenterYTextBox.Size = new System.Drawing.Size(110, 20);
             this.massCenterYTextBox.TabIndex = 8;
@@ -187,7 +191,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 250);
+            this.label5.Location = new System.Drawing.Point(12, 193);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 9;
@@ -210,6 +214,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
