@@ -143,6 +143,7 @@
             this.allForceTextBox.Location = new System.Drawing.Point(12, 44);
             this.allForceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.allForceTextBox.Name = "allForceTextBox";
+            this.allForceTextBox.ReadOnly = true;
             this.allForceTextBox.Size = new System.Drawing.Size(110, 20);
             this.allForceTextBox.TabIndex = 3;
             // 
@@ -151,6 +152,7 @@
             this.currTimeTextBox.Location = new System.Drawing.Point(12, 83);
             this.currTimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.currTimeTextBox.Name = "currTimeTextBox";
+            this.currTimeTextBox.ReadOnly = true;
             this.currTimeTextBox.Size = new System.Drawing.Size(110, 20);
             this.currTimeTextBox.TabIndex = 4;
             // 
@@ -168,6 +170,7 @@
             this.massCenterXTextBox.Location = new System.Drawing.Point(12, 122);
             this.massCenterXTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterXTextBox.Name = "massCenterXTextBox";
+            this.massCenterXTextBox.ReadOnly = true;
             this.massCenterXTextBox.Size = new System.Drawing.Size(110, 20);
             this.massCenterXTextBox.TabIndex = 6;
             // 
@@ -185,13 +188,14 @@
             this.massCenterYTextBox.Location = new System.Drawing.Point(12, 161);
             this.massCenterYTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterYTextBox.Name = "massCenterYTextBox";
+            this.massCenterYTextBox.ReadOnly = true;
             this.massCenterYTextBox.Size = new System.Drawing.Size(110, 20);
             this.massCenterYTextBox.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 193);
+            this.label5.Location = new System.Drawing.Point(12, 194);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 9;

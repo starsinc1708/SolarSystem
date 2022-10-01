@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.systemDataGridView = new System.Windows.Forms.DataGridView();
             this.systemSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.planexXColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,20 +70,20 @@
             this.planetSpeedXColumn,
             this.planetSpeedYColumn,
             this.planetMass});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.systemDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.systemDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.systemDataGridView.Location = new System.Drawing.Point(12, 120);
             this.systemDataGridView.Name = "systemDataGridView";
             this.systemDataGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.systemDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.systemDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.systemDataGridView.Size = new System.Drawing.Size(776, 318);
             this.systemDataGridView.TabIndex = 0;
             // 
@@ -240,22 +240,22 @@
             // EulerMethodRadioButton
             // 
             this.EulerMethodRadioButton.AutoSize = true;
-            this.EulerMethodRadioButton.Checked = true;
             this.EulerMethodRadioButton.Location = new System.Drawing.Point(281, 15);
             this.EulerMethodRadioButton.Name = "EulerMethodRadioButton";
             this.EulerMethodRadioButton.Size = new System.Drawing.Size(96, 17);
             this.EulerMethodRadioButton.TabIndex = 11;
-            this.EulerMethodRadioButton.TabStop = true;
             this.EulerMethodRadioButton.Text = "метод Эйлера";
             this.EulerMethodRadioButton.UseVisualStyleBackColor = true;
             // 
             // CramerEulerMethodRadioButton
             // 
             this.CramerEulerMethodRadioButton.AutoSize = true;
+            this.CramerEulerMethodRadioButton.Checked = true;
             this.CramerEulerMethodRadioButton.Location = new System.Drawing.Point(383, 16);
             this.CramerEulerMethodRadioButton.Name = "CramerEulerMethodRadioButton";
             this.CramerEulerMethodRadioButton.Size = new System.Drawing.Size(144, 17);
             this.CramerEulerMethodRadioButton.TabIndex = 12;
+            this.CramerEulerMethodRadioButton.TabStop = true;
             this.CramerEulerMethodRadioButton.Text = "метод Эйлера-Крамера";
             this.CramerEulerMethodRadioButton.UseVisualStyleBackColor = true;
             // 

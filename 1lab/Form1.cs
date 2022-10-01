@@ -77,28 +77,57 @@ namespace _1lab
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int cirlceOldX = 0;
-            int cirlceOldY = 0;
-
             switch (chosenMethod)
             {
                 case 0:
                     // метод Эйлера
+                    eulerMethod();
                     label5.Text = "метод Эйлера";
                     break;
                 case 1:
                     // метод Эйлера-Крамера
+                    cramerEulerMethod();
                     label5.Text = "метод Эйлера-Крамера";
                     break;
                 case 2:
                     // метод Верле
+                    verletMethod();
                     label5.Text = "метод Верле";
                     break;
                 case 3:
                     // метод Бимана
+                    beemanMethod();
                     label5.Text = "метод Бимана";
                     break;
             }
+
+            simulation_len -= simulation_step;
+
+            if (simulation_len < 0) currTimeTextBox.Text = (0).ToString();
+            else currTimeTextBox.Text = simulation_len.ToString();
+
+            if (simulation_len <= 0)
+            {
+                stopPlaySimulationButton.Available = false;
+                isStopped = false;
+                timer1.Stop();
+            }
+        }
+
+        private void beemanMethod()
+        {
+
+        }
+
+        private void verletMethod()
+        {
+
+        }
+
+        private void cramerEulerMethod()
+        {
+            int cirlceOldX = 0;
+            int cirlceOldY = 0;
 
             for (int i = 0; i < planets.Count; i++)
             {
@@ -115,26 +144,19 @@ namespace _1lab
                 planets[i].x += planets[i].Vx * simulation_step;
                 planets[i].y += planets[i].Vy * simulation_step;
 
-                Thread.Sleep(2);
-
                 g.FillEllipse(Brushes.Red,
                     (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D * 0.8f) / 2),
                     (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D * 0.8f) / 2),
                     planets[i].D * 0.8f, planets[i].D * 0.8f);
 
+                Thread.Sleep(2);
             }
 
-            simulation_len -= simulation_step;
+        }
 
-            if(simulation_len < 0) currTimeTextBox.Text = (0).ToString();
-            else currTimeTextBox.Text = simulation_len.ToString();
-
-            if (simulation_len <= 0)
-            {
-                stopPlaySimulationButton.Available = false;
-                isStopped = false;
-                timer1.Stop();
-            }
+        private void eulerMethod()
+        {
+            
         }
 
         private void calculateV(Planet planet)
