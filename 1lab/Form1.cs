@@ -14,7 +14,7 @@ namespace _1lab
         public double simulation_len;
         private List<Planet> planets = new List<Planet>();
         Rectangle background;
-        private const double AE = 149.5e6 * 1000;
+        private const double AE = 149.5e9;
         private double SCALE = 1 / AE;
         private const double SpeedConst = 23297.8705;
         private const double G = 6.67430e-11;
@@ -71,6 +71,7 @@ namespace _1lab
         private void createSystemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             startModelToolStripMenuItem.Available = true;
+            planets.Clear();
             timer1.Stop();
             paramsForm.Visible = true;
         }
@@ -203,5 +204,21 @@ namespace _1lab
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Pen pen = new Pen(Color.Ivory, 10);
+            g.DrawLine(pen, 145, 0, 145, Height - 345);
+            g.DrawLine(pen, 150, Height - 345, 0, Height - 345);
+        }
     }
 }

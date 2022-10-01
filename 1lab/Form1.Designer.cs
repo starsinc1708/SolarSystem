@@ -123,7 +123,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 28);
+            this.label1.Location = new System.Drawing.Point(12, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 1;
@@ -132,15 +132,15 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 67);
+            this.label2.Location = new System.Drawing.Point(12, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 13);
+            this.label2.Size = new System.Drawing.Size(105, 26);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Оставшееся время симуляции (с)";
+            this.label2.Text = "Оставшееся время\r\nсимуляции (с)\r\n";
             // 
             // allForceTextBox
             // 
-            this.allForceTextBox.Location = new System.Drawing.Point(12, 44);
+            this.allForceTextBox.Location = new System.Drawing.Point(12, 87);
             this.allForceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.allForceTextBox.Name = "allForceTextBox";
             this.allForceTextBox.ReadOnly = true;
@@ -149,7 +149,7 @@
             // 
             // currTimeTextBox
             // 
-            this.currTimeTextBox.Location = new System.Drawing.Point(12, 83);
+            this.currTimeTextBox.Location = new System.Drawing.Point(12, 141);
             this.currTimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.currTimeTextBox.Name = "currTimeTextBox";
             this.currTimeTextBox.ReadOnly = true;
@@ -159,7 +159,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 106);
+            this.label3.Location = new System.Drawing.Point(12, 165);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 5;
@@ -167,7 +167,7 @@
             // 
             // massCenterXTextBox
             // 
-            this.massCenterXTextBox.Location = new System.Drawing.Point(12, 122);
+            this.massCenterXTextBox.Location = new System.Drawing.Point(15, 182);
             this.massCenterXTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterXTextBox.Name = "massCenterXTextBox";
             this.massCenterXTextBox.ReadOnly = true;
@@ -177,7 +177,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 145);
+            this.label4.Location = new System.Drawing.Point(12, 206);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 7;
@@ -185,7 +185,7 @@
             // 
             // massCenterYTextBox
             // 
-            this.massCenterYTextBox.Location = new System.Drawing.Point(12, 161);
+            this.massCenterYTextBox.Location = new System.Drawing.Point(15, 223);
             this.massCenterYTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.massCenterYTextBox.Name = "massCenterYTextBox";
             this.massCenterYTextBox.ReadOnly = true;
@@ -195,11 +195,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 194);
+            this.label5.Location = new System.Drawing.Point(12, 40);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(114, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "label5";
+            this.label5.Text = "Модель не запущена";
             // 
             // Form1
             // 
@@ -221,6 +221,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
