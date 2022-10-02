@@ -268,6 +268,7 @@
             this.VerletMethodRadioButton.TabIndex = 13;
             this.VerletMethodRadioButton.Text = "метод Верле";
             this.VerletMethodRadioButton.UseVisualStyleBackColor = true;
+            this.VerletMethodRadioButton.Visible = false;
             // 
             // BeemanMethodRadioButton
             // 
@@ -278,6 +279,7 @@
             this.BeemanMethodRadioButton.TabIndex = 14;
             this.BeemanMethodRadioButton.Text = "метод Бимана";
             this.BeemanMethodRadioButton.UseVisualStyleBackColor = true;
+            this.BeemanMethodRadioButton.Visible = false;
             // 
             // ParamsForm
             // 
@@ -313,7 +315,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView systemDataGridView;
+        public System.Windows.Forms.DataGridView systemDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn systemSizeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn planexXColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn planexYColumn;

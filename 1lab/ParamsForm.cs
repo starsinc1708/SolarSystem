@@ -64,11 +64,12 @@ namespace _1lab
             }
         }
 
-        private void acceptParamsButton_Click(object sender, EventArgs e)
+        public void acceptParamsButton_Click(object sender, EventArgs e)
         {
             planets.Clear();
             simulationStep = Double.Parse(simulationStepTimeBox.Text.ToString());
             simulationTime = Double.Parse(modelingTimeBox.Text.ToString());
+
             if (EulerMethodRadioButton.Checked)
             {
                 chosenMethod = 0;

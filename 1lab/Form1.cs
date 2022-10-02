@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -23,7 +26,7 @@ namespace _1lab
         private const double SpeedConst = 23297.8705;
         private const double G = 6.67430e-11;
         private bool isStopped = false;
-        private bool isCreated = false;
+        public bool isCreated = false;
         private int chosenMethod = -1;
 
         private ParamsForm paramsForm { get; set; }
@@ -36,6 +39,10 @@ namespace _1lab
             background = new Rectangle(270, 40, Width - 316, Height - 100);
             stopPlaySimulationButton.Available = false;
             startModelToolStripMenuItem.Available = false;
+            var myCulture = new CultureInfo("ru-RU");
+            myCulture.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture = myCulture;
+            paramsForm.systemDataGridView.DefaultCellStyle.FormatProvider = myCulture;
         }
 
         // Начать Симуляцию
@@ -69,14 +76,6 @@ namespace _1lab
 
         }
 
-
-        private void paramsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            planets.Clear();
-            paramsForm.Visible = true;
-        }
-
         // Создать Систему / Изменить Параметры
         private void createSystemToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -86,6 +85,8 @@ namespace _1lab
             paramsForm.Visible = true;
         }
 
+
+        // Тик Таймера
         private void timer1_Tick(object sender, EventArgs e)
         {
             Pen pen = new Pen(Color.Black, 10);
@@ -222,6 +223,7 @@ namespace _1lab
             }
         }
 
+        // Метод Эйлера-Крамера
         private void cramerEulerMethod()
         {
             int cirlceOldX = 0;
@@ -262,6 +264,7 @@ namespace _1lab
 
         }
 
+        // Метод Эйлера
         private void eulerMethod()
         {
             int cirlceOldX = 0;
@@ -298,6 +301,8 @@ namespace _1lab
             }
         }
 
+
+        // Расчёт ускорения
         private void calculateV(Planet planet)
         {
             double FsumX = 0;
@@ -325,6 +330,7 @@ namespace _1lab
             }
         }
 
+        // Пауза
         private void stopPlaySimulationButton_Click(object sender, EventArgs e)
         {
             if (isStopped)
@@ -348,5 +354,136 @@ namespace _1lab
             g.DrawLine(pen, 185, 0, 185, Height - 345);
             g.DrawLine(pen, 190, Height - 345, 0, Height - 345);
         }
+
+        // Сохранить Систему
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (paramsForm.systemDataGridView.Rows.Count > 0)
+            {
+
+                saveFileDialog1.Filter = "CSV (*.csv)|*.csv";
+                saveFileDialog1.FileName = "Output.csv";
+                bool fileError = false;
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(saveFileDialog1.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(saveFileDialog1.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("Диск недоступен." + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            int columnCount = paramsForm.systemDataGridView.Columns.Count;
+                            string columnNames = "";
+                            string[] outputCsv = new string[paramsForm.systemDataGridView.Rows.Count + 2];
+                            for (int i = 0; i < columnCount; i++)
+                            {
+                                if (i == columnCount - 1)
+                                {
+                                    columnNames += paramsForm.systemDataGridView.Columns[i].HeaderText.ToString();
+                                }
+                                else
+                                {
+                                    columnNames += paramsForm.systemDataGridView.Columns[i].HeaderText.ToString() + ",";
+                                }
+                            }
+                            outputCsv[0] += columnNames;
+
+                            for (int i = 1; (i - 1) < paramsForm.systemDataGridView.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < columnCount; j++)
+                                {
+                                    if (j == columnCount - 1)
+                                    {
+                                        outputCsv[i] += paramsForm.systemDataGridView.Rows[i - 1].Cells[j].Value.ToString();
+                                    }
+                                    else
+                                    {
+                                        outputCsv[i] += paramsForm.systemDataGridView.Rows[i - 1].Cells[j].Value.ToString() + ",";
+                                    }
+                                }
+                            }
+                            outputCsv[paramsForm.systemDataGridView.Rows.Count + 1] += paramsForm.simulationStep + ",";
+                            outputCsv[paramsForm.systemDataGridView.Rows.Count + 1] += paramsForm.simulationTime;
+                            File.WriteAllLines(saveFileDialog1.FileName, outputCsv, Encoding.UTF8);
+                            MessageBox.Show("Сохранение успешно!", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ошибка:" + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нечего сохранять!", "Info");
+            }
+        }
+
+        // Открыть Систему
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "CSV (*.csv)|*.csv";
+
+            bool fileError = false;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (!fileError)
+                {
+                    String[] str = File.ReadAllLines(openFileDialog1.FileName, Encoding.UTF8);
+                    List<String[]> table_values = new List<String[]>();
+
+                    for (int i = 0; i < str.Length; i++)
+                    {
+                        table_values.Add(str[i].Split(','));
+                    }
+
+                    int planetsCount = Int32.Parse(table_values[0][0]);
+
+                    for (int i = 0; i < planetsCount; i++)
+                    {
+                        paramsForm.systemDataGridView.Rows.Clear();
+                    }
+
+
+                    paramsForm.systemDataGridView.Columns[0].HeaderCell.Value = planetsCount.ToString();
+
+                    for (int i = 0; i < planetsCount; i++)
+                    {
+                        paramsForm.systemDataGridView.Rows.Add();
+                    }
+
+                    for (int i = 0; i < planetsCount; ++i)
+                    {
+                        paramsForm.systemDataGridView.Rows[i].Cells[0].Value = i;
+
+                        paramsForm.systemDataGridView.Rows[i].Cells[1].Value = (Double.Parse(table_values[i + 1][1])).ToString();
+
+                        paramsForm.systemDataGridView.Rows[i].Cells[2].Value = (Double.Parse(table_values[i + 1][2])).ToString();
+
+                        paramsForm.systemDataGridView.Rows[i].Cells[3].Value = (Double.Parse(table_values[i + 1][3])).ToString();
+
+                        paramsForm.systemDataGridView.Rows[i].Cells[4].Value = (Double.Parse(table_values[i + 1][4])).ToString();
+
+                        paramsForm.systemDataGridView.Rows[i].Cells[5].Value = (Double.Parse(table_values[i + 1][5])).ToString();
+                    }
+                    paramsForm.simulationStep = Int32.Parse(table_values[table_values.Count - 1][0]);
+                    paramsForm.simulationTime = Int32.Parse(table_values[table_values.Count - 1][1]);
+                    paramsForm.acceptParamsButton_Click(this, e);
+                }
+            }
+        }
     }
+
 }
