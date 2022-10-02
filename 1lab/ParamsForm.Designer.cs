@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.systemDataGridView = new System.Windows.Forms.DataGridView();
             this.systemSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.planexXColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,20 +70,20 @@
             this.planetSpeedXColumn,
             this.planetSpeedYColumn,
             this.planetMass});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.systemDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.systemDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.systemDataGridView.Location = new System.Drawing.Point(12, 120);
             this.systemDataGridView.Name = "systemDataGridView";
             this.systemDataGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.systemDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.systemDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.systemDataGridView.Size = new System.Drawing.Size(776, 318);
             this.systemDataGridView.TabIndex = 0;
             // 
@@ -166,7 +166,7 @@
             this.simulationStepTimeBox.Name = "simulationStepTimeBox";
             this.simulationStepTimeBox.Size = new System.Drawing.Size(100, 20);
             this.simulationStepTimeBox.TabIndex = 4;
-            this.simulationStepTimeBox.Text = "360000";
+            this.simulationStepTimeBox.Text = "760000";
             // 
             // modelingTimeBox
             // 
@@ -174,7 +174,7 @@
             this.modelingTimeBox.Name = "modelingTimeBox";
             this.modelingTimeBox.Size = new System.Drawing.Size(100, 20);
             this.modelingTimeBox.TabIndex = 5;
-            this.modelingTimeBox.Text = "31536000";
+            this.modelingTimeBox.Text = "211536000";
             // 
             // label3
             // 

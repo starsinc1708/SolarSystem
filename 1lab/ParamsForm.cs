@@ -12,10 +12,12 @@ namespace _1lab
         public int chosenMethod = -1;
         public List<Planet> planets = new List<Planet>();
         private const double G = 6.67430e-11;
+        public Form1 form1;
 
-        public ParamsForm()
+        public ParamsForm(Form1 form1)
         {
             InitializeComponent();
+            this.form1 = form1;
             systemDataGridView.RowHeadersVisible = false;
         }
 
@@ -94,6 +96,7 @@ namespace _1lab
                     Double.Parse(systemDataGridView.Rows[i].Cells[5].Value.ToString()), 10));
             }
             this.Visible = false;
+            form1.createSystemToolStripMenuItem.Text = "Изменить Параметры";
         }
 
         private void ParamsForm_Load(object sender, EventArgs e)
@@ -117,8 +120,6 @@ namespace _1lab
                 planetCounter = (int)planetCountNumericUpDown.Value;
                 tableFill();
             }
-
-
         }
     }
 }

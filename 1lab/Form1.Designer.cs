@@ -34,7 +34,6 @@
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.paramsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopPlaySimulationButton = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -56,7 +55,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.createSystemToolStripMenuItem,
-            this.paramsToolStripMenuItem,
             this.startModelToolStripMenuItem,
             this.stopPlaySimulationButton});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -93,13 +91,6 @@
             this.createSystemToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
             this.createSystemToolStripMenuItem.Text = "Создать систему";
             this.createSystemToolStripMenuItem.Click += new System.EventHandler(this.createSystemToolStripMenuItem_Click);
-            // 
-            // paramsToolStripMenuItem
-            // 
-            this.paramsToolStripMenuItem.Name = "paramsToolStripMenuItem";
-            this.paramsToolStripMenuItem.Size = new System.Drawing.Size(140, 20);
-            this.paramsToolStripMenuItem.Text = "Изменить Параметры";
-            this.paramsToolStripMenuItem.Click += new System.EventHandler(this.paramsToolStripMenuItem_Click);
             // 
             // startModelToolStripMenuItem
             // 
@@ -227,6 +218,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -240,9 +232,8 @@
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem paramsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startModelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createSystemToolStripMenuItem;
+        public  System.Windows.Forms.ToolStripMenuItem createSystemToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem stopPlaySimulationButton;
         private System.Windows.Forms.Label label1;

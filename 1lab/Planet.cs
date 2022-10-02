@@ -14,6 +14,8 @@ namespace _1lab
         public double Vy;
         public double x;
         public double y;
+        public double picX;
+        public double picY;
         public double mass;
         public int D;
 

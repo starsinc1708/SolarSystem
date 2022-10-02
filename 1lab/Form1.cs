@@ -23,21 +23,22 @@ namespace _1lab
         private const double SpeedConst = 23297.8705;
         private const double G = 6.67430e-11;
         private bool isStopped = false;
+        private bool isCreated = false;
         private int chosenMethod = -1;
 
         private ParamsForm paramsForm { get; set; }
 
         public Form1()
         {
-            paramsForm = new ParamsForm();
+            paramsForm = new ParamsForm(this);
             InitializeComponent();
             g = CreateGraphics();
             background = new Rectangle(270, 40, Width - 316, Height - 100);
-            paramsToolStripMenuItem.Available = false;
             stopPlaySimulationButton.Available = false;
             startModelToolStripMenuItem.Available = false;
         }
 
+        // Начать Симуляцию
         private void startModelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             planets.Clear();
@@ -61,13 +62,13 @@ namespace _1lab
 
             Rectangle background = new Rectangle(270, 40, Width - 316, Height - 100);
             g.FillRectangle(Brushes.Black, background);
-            paramsToolStripMenuItem.Available = true;
             stopPlaySimulationButton.Available = true;
             isStopped = false;
             stopPlaySimulationButton.Text = "■";
             timer1.Start();
 
         }
+
 
         private void paramsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -76,6 +77,7 @@ namespace _1lab
             paramsForm.Visible = true;
         }
 
+        // Создать Систему / Изменить Параметры
         private void createSystemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             startModelToolStripMenuItem.Available = true;
@@ -113,28 +115,6 @@ namespace _1lab
                     label5.Text = "метод Бимана";
                     break;
             }
-
-            /*foreach (Planet planet1 in planets)
-            {
-                foreach (Planet planet2 in planets)
-                {
-                    if(planet1.num != planet2.num)
-                    {
-                        if ((planet1.x <= planet2.x + 1e6 && planet1.y <= planet2.y + 1e6) ||
-                         planet1.x >= planet2.x - 1e6 && planet1.y >= planet2.y - 1e6)
-                        {
-                            if (planet1.mass > planet2.mass)
-                            {
-                                label6.Text = (planet1.num + " - 1 | 2 - " + planet2.num).ToString();
-                            }
-                            else
-                            {
-                                label6.Text = (planet2.num + " - 2 | 1 - " + planet2.num).ToString();
-                            }
-                        }
-                    }
-                }
-            }*/
 
             simulation_len -= simulation_step;
 
@@ -187,6 +167,9 @@ namespace _1lab
                 cirlceOldX = (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
                 cirlceOldY = (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
 
+                planets[i].picX = cirlceOldX;
+                planets[i].picY = cirlceOldY;
+
                 g.FillEllipse(Brushes.White,
                     cirlceOldX,
                     cirlceOldY,
@@ -217,6 +200,9 @@ namespace _1lab
                 cirlceOldX = (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
                 cirlceOldY = (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
 
+                planets[i].picX = cirlceOldX;
+                planets[i].picY = cirlceOldY;
+
                 g.FillEllipse(Brushes.White,
                     cirlceOldX,
                     cirlceOldY,
@@ -246,6 +232,9 @@ namespace _1lab
                 cirlceOldX = (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
                 cirlceOldY = (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
 
+                planets[i].picX = cirlceOldX;
+                planets[i].picY = cirlceOldY;
+
                 calculateV(planets[i]);
 
                 planets[i].x += planets[i].Vx * simulation_step;
@@ -256,10 +245,10 @@ namespace _1lab
                     cirlceOldY,
                     planets[i].D, planets[i].D);
 
-                if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 2) ||
-                    cirlceOldX <= background.X + planets[i].D / 2 ||
-                    cirlceOldY >= (background.Y + background.Height - planets[i].D / 2) ||
-                    cirlceOldY <= background.Y + planets[i].D / 2))
+                if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
+                    cirlceOldX <= background.X + planets[i].D / 4 ||
+                    cirlceOldY >= (background.Y + background.Height - planets[i].D / 4) ||
+                    cirlceOldY <= background.Y + planets[i].D / 4))
                 {
 
                     g.FillEllipse(Brushes.Red,
@@ -283,6 +272,9 @@ namespace _1lab
                 cirlceOldX = (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
                 cirlceOldY = (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
 
+                planets[i].picX = cirlceOldX;
+                planets[i].picY = cirlceOldY;
+
                 g.FillEllipse(Brushes.White,
                     cirlceOldX,
                     cirlceOldY,
@@ -292,12 +284,16 @@ namespace _1lab
                 planets[i].y += planets[i].Vy * simulation_step;
 
                 calculateV(planets[i]);
-
-                g.FillEllipse(Brushes.Red,
+                if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
+                    cirlceOldX <= background.X + planets[i].D / 4 ||
+                    cirlceOldY >= (background.Y + background.Height - planets[i].D / 4) ||
+                    cirlceOldY <= background.Y + planets[i].D / 4))
+                {
+                    g.FillEllipse(Brushes.Red,
                     (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D * 0.8f) / 2),
                     (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D * 0.8f) / 2),
                     planets[i].D * 0.8f, planets[i].D * 0.8f);
-
+                }
                 Thread.Sleep(2);
             }
         }
@@ -344,6 +340,13 @@ namespace _1lab
                 isStopped = true;
 
             }
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Pen pen = new Pen(Color.Black, 10);
+            g.DrawLine(pen, 185, 0, 185, Height - 345);
+            g.DrawLine(pen, 190, Height - 345, 0, Height - 345);
         }
     }
 }
