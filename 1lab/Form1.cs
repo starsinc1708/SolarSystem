@@ -345,10 +345,5 @@ namespace _1lab
 
             }
         }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
