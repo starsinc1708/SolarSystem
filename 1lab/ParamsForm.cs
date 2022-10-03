@@ -122,5 +122,13 @@ namespace _1lab
                 tableFill();
             }
         }
+
+        private void ParamsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            ((Control)sender).Hide();
+
+            e.Cancel = true;
+        }
     }
 }

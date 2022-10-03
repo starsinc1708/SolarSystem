@@ -25,7 +25,7 @@ namespace _1lab
             Vx = vx;
             Vy = vy;
             this.mass = mass;
-            if(num != 0) D = (int)(Math.Log10(mass) / 2);
+            if(num != 0) D = (int)(Math.Log10(mass) / 2.5);
             else D = (int)(Math.Log10(mass));
             this.x = x;
             this.y = y;

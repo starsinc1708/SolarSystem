@@ -481,8 +481,10 @@ namespace _1lab
                     paramsForm.simulationStep = Int32.Parse(table_values[table_values.Count - 1][0]);
                     paramsForm.simulationTime = Int32.Parse(table_values[table_values.Count - 1][1]);
                     paramsForm.acceptParamsButton_Click(this, e);
+                    
                 }
             }
+            startModelToolStripMenuItem.Available = true;
         }
     }
 
