@@ -31,12 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.systemDataGridView = new System.Windows.Forms.DataGridView();
-            this.systemSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.planexXColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.planexYColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.planetSpeedXColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.planetSpeedYColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.planetMass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acceptParamsButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,6 +45,14 @@
             this.CramerEulerMethodRadioButton = new System.Windows.Forms.RadioButton();
             this.VerletMethodRadioButton = new System.Windows.Forms.RadioButton();
             this.BeemanMethodRadioButton = new System.Windows.Forms.RadioButton();
+            this.systemSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planexXColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planexYColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planetSpeedXColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planetSpeedYColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnVz = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planetMass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.systemDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.planetCountNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -67,8 +69,10 @@
             this.systemSizeColumn,
             this.planexXColumn,
             this.planexYColumn,
+            this.columnZ,
             this.planetSpeedXColumn,
             this.planetSpeedYColumn,
+            this.columnVz,
             this.planetMass});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -87,49 +91,6 @@
             this.systemDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.systemDataGridView.Size = new System.Drawing.Size(1035, 391);
             this.systemDataGridView.TabIndex = 0;
-            // 
-            // systemSizeColumn
-            // 
-            this.systemSizeColumn.HeaderText = "Column1";
-            this.systemSizeColumn.MinimumWidth = 6;
-            this.systemSizeColumn.Name = "systemSizeColumn";
-            this.systemSizeColumn.ReadOnly = true;
-            this.systemSizeColumn.Width = 125;
-            // 
-            // planexXColumn
-            // 
-            this.planexXColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.planexXColumn.HeaderText = "X";
-            this.planexXColumn.MinimumWidth = 6;
-            this.planexXColumn.Name = "planexXColumn";
-            // 
-            // planexYColumn
-            // 
-            this.planexYColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.planexYColumn.HeaderText = "Y";
-            this.planexYColumn.MinimumWidth = 6;
-            this.planexYColumn.Name = "planexYColumn";
-            // 
-            // planetSpeedXColumn
-            // 
-            this.planetSpeedXColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.planetSpeedXColumn.HeaderText = "Vx";
-            this.planetSpeedXColumn.MinimumWidth = 6;
-            this.planetSpeedXColumn.Name = "planetSpeedXColumn";
-            // 
-            // planetSpeedYColumn
-            // 
-            this.planetSpeedYColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.planetSpeedYColumn.HeaderText = "Vy";
-            this.planetSpeedYColumn.MinimumWidth = 6;
-            this.planetSpeedYColumn.Name = "planetSpeedYColumn";
-            // 
-            // planetMass
-            // 
-            this.planetMass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.planetMass.HeaderText = "Масса";
-            this.planetMass.MinimumWidth = 6;
-            this.planetMass.Name = "planetMass";
             // 
             // acceptParamsButton
             // 
@@ -294,6 +255,63 @@
             this.BeemanMethodRadioButton.UseVisualStyleBackColor = true;
             this.BeemanMethodRadioButton.Visible = false;
             // 
+            // systemSizeColumn
+            // 
+            this.systemSizeColumn.HeaderText = "Column1";
+            this.systemSizeColumn.MinimumWidth = 6;
+            this.systemSizeColumn.Name = "systemSizeColumn";
+            this.systemSizeColumn.ReadOnly = true;
+            this.systemSizeColumn.Width = 125;
+            // 
+            // planexXColumn
+            // 
+            this.planexXColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.planexXColumn.HeaderText = "X";
+            this.planexXColumn.MinimumWidth = 6;
+            this.planexXColumn.Name = "planexXColumn";
+            // 
+            // planexYColumn
+            // 
+            this.planexYColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.planexYColumn.HeaderText = "Y";
+            this.planexYColumn.MinimumWidth = 6;
+            this.planexYColumn.Name = "planexYColumn";
+            // 
+            // columnZ
+            // 
+            this.columnZ.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnZ.HeaderText = "Z";
+            this.columnZ.MinimumWidth = 6;
+            this.columnZ.Name = "columnZ";
+            // 
+            // planetSpeedXColumn
+            // 
+            this.planetSpeedXColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.planetSpeedXColumn.HeaderText = "Vx";
+            this.planetSpeedXColumn.MinimumWidth = 6;
+            this.planetSpeedXColumn.Name = "planetSpeedXColumn";
+            // 
+            // planetSpeedYColumn
+            // 
+            this.planetSpeedYColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.planetSpeedYColumn.HeaderText = "Vy";
+            this.planetSpeedYColumn.MinimumWidth = 6;
+            this.planetSpeedYColumn.Name = "planetSpeedYColumn";
+            // 
+            // columnVz
+            // 
+            this.columnVz.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnVz.HeaderText = "Vz";
+            this.columnVz.MinimumWidth = 6;
+            this.columnVz.Name = "columnVz";
+            // 
+            // planetMass
+            // 
+            this.planetMass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.planetMass.HeaderText = "Масса";
+            this.planetMass.MinimumWidth = 6;
+            this.planetMass.Name = "planetMass";
+            // 
             // ParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,12 +349,6 @@
         #endregion
 
         public System.Windows.Forms.DataGridView systemDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn systemSizeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn planexXColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn planexYColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn planetSpeedXColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn planetSpeedYColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn planetMass;
         private System.Windows.Forms.Button acceptParamsButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -351,5 +363,13 @@
         private System.Windows.Forms.RadioButton CramerEulerMethodRadioButton;
         private System.Windows.Forms.RadioButton VerletMethodRadioButton;
         private System.Windows.Forms.RadioButton BeemanMethodRadioButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn systemSizeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn planexXColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn planexYColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnZ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn planetSpeedXColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn planetSpeedYColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnVz;
+        private System.Windows.Forms.DataGridViewTextBoxColumn planetMass;
     }
 }

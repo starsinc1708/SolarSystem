@@ -40,26 +40,31 @@ namespace _1lab
                 {
                     prevX = i * 149500000000;
                     systemDataGridView.Rows[i].Cells[1].Value = (prevX).ToString();
+                    //systemDataGridView.Rows[i].Cells[3].Value = (prevX).ToString();
                 }
                 else
                 {
                     prevX = i * prevX / (i - 1.0);
                     systemDataGridView.Rows[i].Cells[1].Value = (prevX).ToString();
+                    //systemDataGridView.Rows[i].Cells[3].Value = (prevX).ToString();
                 }
 
                 systemDataGridView.Rows[i].Cells[2].Value = (0).ToString();
 
                 systemDataGridView.Rows[i].Cells[3].Value = (0).ToString();
 
+                systemDataGridView.Rows[i].Cells[4].Value = (0).ToString();
+                systemDataGridView.Rows[i].Cells[6].Value = (0).ToString();
+
                 if (i != 0)
                 {
-                    systemDataGridView.Rows[i].Cells[4].Value = (Math.Sqrt(G * 1.2166e30 / prevX)).ToString();
-                    systemDataGridView.Rows[i].Cells[5].Value = (i * 6.083e24).ToString();
+                    systemDataGridView.Rows[i].Cells[5].Value = (Math.Sqrt(G * 1.2166e30 / prevX)).ToString();
+                    systemDataGridView.Rows[i].Cells[7].Value = (i * 6.083e24).ToString();
                 }
                 else
                 {
-                    systemDataGridView.Rows[i].Cells[4].Value = (0).ToString();
-                    systemDataGridView.Rows[0].Cells[5].Value = (1.2166e30).ToString();
+                    systemDataGridView.Rows[i].Cells[5].Value = (0).ToString();
+                    systemDataGridView.Rows[0].Cells[7].Value = (1.2166e30).ToString();
                 }
             }
         }
@@ -88,14 +93,17 @@ namespace _1lab
             }
             for (int i = 0; i < systemDataGridView.Rows.Count; i++)
             {
-                // int num, double vx, double vy, double x, double y, double mass, double d
+                // int num, double vx, double vy, double vz, double x, double y, double z, double mass
                 planets.Add(new Planet(Int32.Parse(systemDataGridView.Rows[i].Cells[0].Value.ToString()),
-                    Double.Parse(systemDataGridView.Rows[i].Cells[3].Value.ToString()),
                     Double.Parse(systemDataGridView.Rows[i].Cells[4].Value.ToString()),
+                    Double.Parse(systemDataGridView.Rows[i].Cells[5].Value.ToString()),
+                    Double.Parse(systemDataGridView.Rows[i].Cells[6].Value.ToString()),
                     Double.Parse(systemDataGridView.Rows[i].Cells[1].Value.ToString()),
                     Double.Parse(systemDataGridView.Rows[i].Cells[2].Value.ToString()),
-                    Double.Parse(systemDataGridView.Rows[i].Cells[5].Value.ToString()), 10));
+                    Double.Parse(systemDataGridView.Rows[i].Cells[3].Value.ToString()),
+                    Double.Parse(systemDataGridView.Rows[i].Cells[7].Value.ToString())));
             }
+            
             this.Visible = false;
             form1.createSystemToolStripMenuItem.Text = "Изменить Параметры";
         }

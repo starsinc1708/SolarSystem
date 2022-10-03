@@ -17,9 +17,10 @@ namespace _1lab
         public double allForce = 0;
         public double massCenterX = 0;
         public double massCenterY = 0;
+        public double massCenterZ = 0;
         public double allMass = 0;
         public double simulation_len;
-        private List<Planet> planets = new List<Planet>();
+        public List<Planet> planets = new List<Planet>();
         Rectangle background;
         private const double AE = 149.5e9;
         private double SCALE = 1 / AE;
@@ -28,6 +29,7 @@ namespace _1lab
         private bool isStopped = false;
         public bool isCreated = false;
         private int chosenMethod = -1;
+        private int chosenCoord = 0;
 
         private ParamsForm paramsForm { get; set; }
 
@@ -52,19 +54,23 @@ namespace _1lab
             allForce = 0;
             massCenterX = 0;
             massCenterY = 0;
+            massCenterZ = 0;
             allMass = 0;
             simulation_step = paramsForm.simulationStep;
             simulation_len = paramsForm.simulationTime;
             chosenMethod = paramsForm.chosenMethod;
+
             for (int i = 0; i < paramsForm.planets.Count; i++)
             {
+                // int num, double vx, double vy, double vz, double x, double y, double z, double mass
                 planets.Add(new Planet(paramsForm.planets[i].num,
                     paramsForm.planets[i].Vx,
                     paramsForm.planets[i].Vy,
+                    paramsForm.planets[i].Vz,
                     paramsForm.planets[i].x,
                     paramsForm.planets[i].y,
-                    paramsForm.planets[i].mass,
-                    paramsForm.planets[i].D));
+                    paramsForm.planets[i].z,
+                    paramsForm.planets[i].mass));
             }
 
             Rectangle background = new Rectangle(270, 40, Width - 316, Height - 100);
@@ -89,9 +95,19 @@ namespace _1lab
         // Тик Таймера
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Pen pen = new Pen(Color.Black, 10);
-            g.DrawLine(pen, 185, 0, 185, Height - 345);
-            g.DrawLine(pen, 190, Height - 345, 0, Height - 345);
+
+            if (radioButtonXY.Checked)
+            {
+                chosenCoord = 0;
+            }
+            if (radioButtonXZ.Checked)
+            {
+                chosenCoord = 1;
+            }
+            if (radioButtonYZ.Checked)
+            {
+                chosenCoord = 2;
+            }
 
             switch (chosenMethod)
             {
@@ -126,7 +142,7 @@ namespace _1lab
             // Общая Энергия
             foreach (Planet planet in planets)
             {
-                allForce = (planet.mass * (Math.Pow(planet.Vy, 2) + Math.Pow(planet.Vx, 2))) / 2;
+                allForce = (planet.mass * (Math.Pow(planet.Vy, 2) + Math.Pow(planet.Vx, 2) + Math.Pow(planet.Vz, 2))) / 2;
             }
             allForceTextBox.Text = allForce.ToString();
 
@@ -148,6 +164,17 @@ namespace _1lab
             massCenterY /= allMass * 1e9;
             massCenterYTextBox.Text = massCenterY.ToString();
             massCenterY = 0;
+
+            // Центр масс Vz
+            foreach (Planet planet in planets)
+            {
+                massCenterZ += planet.mass * planet.z;
+            }
+            massCenterZ /= allMass * 1e9;
+            massCenterZTextBox.Text = massCenterZ.ToString();
+            massCenterZ = 0;
+
+            allMass = 0;
 
             if (simulation_len <= 0)
             {
@@ -231,34 +258,82 @@ namespace _1lab
 
             for (int i = 0; i < planets.Count; i++)
             {
-                cirlceOldX = (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
-                cirlceOldY = (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
-
-                planets[i].picX = cirlceOldX;
-                planets[i].picY = cirlceOldY;
+                if (chosenCoord == 0)
+                {
+                    cirlceOldX = (int) (planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
+                    cirlceOldY = (int) (planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
+                }
+                if (chosenCoord == 1)
+                {
+                    cirlceOldX = (int) (planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
+                    cirlceOldY = (int) (planets[i].z * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
+                }
+                if (chosenCoord == 2)
+                {
+                    cirlceOldX = (int) (planets[i].z * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D) / 2);
+                    cirlceOldY = (int) (planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D) / 2);
+                }
 
                 calculateV(planets[i]);
 
                 planets[i].x += planets[i].Vx * simulation_step;
                 planets[i].y += planets[i].Vy * simulation_step;
+                planets[i].z += planets[i].Vz * simulation_step;
 
-                g.FillEllipse(Brushes.White,
-                    cirlceOldX,
-                    cirlceOldY,
-                    planets[i].D, planets[i].D);
-
-                if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
+                if (chosenCoord == 0)
+                {
+                    if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
                     cirlceOldX <= background.X + planets[i].D / 4 ||
                     cirlceOldY >= (background.Y + background.Height - planets[i].D / 4) ||
                     cirlceOldY <= background.Y + planets[i].D / 4))
-                {
+                    {
+                        g.FillEllipse(Brushes.White,
+                        cirlceOldX,
+                        cirlceOldY,
+                        planets[i].D, planets[i].D);
 
-                    g.FillEllipse(Brushes.Red,
-                    (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D * 0.8f) / 2),
-                    (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D * 0.8f) / 2),
-                    planets[i].D * 0.8f, planets[i].D * 0.8f);
+                        g.FillEllipse(Brushes.Red,
+                        (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D * 0.8f) / 2),
+                        (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D * 0.8f) / 2),
+                        planets[i].D * 0.8f, planets[i].D * 0.8f);
+                    }
                 }
+                if (chosenCoord == 1)
+                {
+                    if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
+                    cirlceOldX <= background.X + planets[i].D / 4 ||
+                    cirlceOldY >= (background.Y + background.Height - planets[i].D / 4) ||
+                    cirlceOldY <= background.Y + planets[i].D / 4))
+                    {
+                        g.FillEllipse(Brushes.White,
+                        cirlceOldX,
+                        cirlceOldY,
+                        planets[i].D, planets[i].D);
 
+                        g.FillEllipse(Brushes.Red,
+                        (int)(planets[i].x * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D * 0.8f) / 2),
+                        (int)(planets[i].z * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D * 0.8f) / 2),
+                        planets[i].D * 0.8f, planets[i].D * 0.8f);
+                    }
+                }
+                if (chosenCoord == 2)
+                {
+                    if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
+                    cirlceOldX <= background.X + planets[i].D / 4 ||
+                    cirlceOldY >= (background.Y + background.Height - planets[i].D / 4) ||
+                    cirlceOldY <= background.Y + planets[i].D / 4))
+                    {
+                        g.FillEllipse(Brushes.White,
+                        cirlceOldX,
+                        cirlceOldY,
+                        planets[i].D, planets[i].D);
+
+                        g.FillEllipse(Brushes.Red,
+                        (int)(planets[i].z * SCALE * (260 / planets.Count) + background.X + (background.Width - planets[i].D * 0.8f) / 2),
+                        (int)(planets[i].y * SCALE * (260 / planets.Count) + background.Y + (background.Height - planets[i].D * 0.8f) / 2),
+                        planets[i].D * 0.8f, planets[i].D * 0.8f);
+                    }
+                }
                 Thread.Sleep(2);
             }
 
@@ -287,6 +362,7 @@ namespace _1lab
                 planets[i].y += planets[i].Vy * simulation_step;
 
                 calculateV(planets[i]);
+
                 if (!(cirlceOldX >= (background.X + background.Width - planets[i].D / 4) ||
                     cirlceOldX <= background.X + planets[i].D / 4 ||
                     cirlceOldY >= (background.Y + background.Height - planets[i].D / 4) ||
@@ -307,9 +383,11 @@ namespace _1lab
         {
             double FsumX = 0;
             double FsumY = 0;
+            double FsumZ = 0;
             double F = 0;
             double dis_x = 0;
             double dis_y = 0;
+            double dis_z = 0;
             double dis = 0;
 
             for (int i = 0; i < planets.Count(); i++)
@@ -318,15 +396,18 @@ namespace _1lab
 
                 dis_x = planets[i].x - planet.x;
                 dis_y = planets[i].y - planet.y;
-                dis = Math.Sqrt(Math.Pow(dis_x, 2) + Math.Pow(dis_y, 2));
+                dis_z = planets[i].z - planet.z;
+                dis = Math.Sqrt(Math.Pow(dis_x, 2) + Math.Pow(dis_y, 2) + Math.Pow(dis_z, 2));
 
                 F = G * planets[i].mass / Math.Pow(dis, 2);
 
                 FsumX = F * dis_x / dis;
                 FsumY = F * dis_y / dis;
+                FsumZ = F * dis_z / dis;
 
                 planet.Vx += FsumX * simulation_step;
                 planet.Vy += FsumY * simulation_step;
+                planet.Vz += FsumZ * simulation_step;
             }
         }
 
@@ -350,9 +431,7 @@ namespace _1lab
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Pen pen = new Pen(Color.Black, 10);
-            g.DrawLine(pen, 185, 0, 185, Height - 345);
-            g.DrawLine(pen, 190, Height - 345, 0, Height - 345);
+
         }
 
         // Сохранить Систему
@@ -477,14 +556,33 @@ namespace _1lab
                         paramsForm.systemDataGridView.Rows[i].Cells[4].Value = (Double.Parse(table_values[i + 1][4])).ToString();
 
                         paramsForm.systemDataGridView.Rows[i].Cells[5].Value = (Double.Parse(table_values[i + 1][5])).ToString();
+
+                        paramsForm.systemDataGridView.Rows[i].Cells[6].Value = (Double.Parse(table_values[i + 1][6])).ToString();
+                        
+                        paramsForm.systemDataGridView.Rows[i].Cells[7].Value = (Double.Parse(table_values[i + 1][7])).ToString();
                     }
                     paramsForm.simulationStep = Int32.Parse(table_values[table_values.Count - 1][0]);
                     paramsForm.simulationTime = Int32.Parse(table_values[table_values.Count - 1][1]);
                     paramsForm.acceptParamsButton_Click(this, e);
-                    
+
                 }
             }
             startModelToolStripMenuItem.Available = true;
+        }
+
+        private void radioButtonXY_CheckedChanged(object sender, EventArgs e)
+        {
+            g.FillRectangle(Brushes.Black, background);
+        }
+
+        private void radioButtonXZ_CheckedChanged(object sender, EventArgs e)
+        {
+            g.FillRectangle(Brushes.Black, background);
+        }
+
+        private void radioButtonYZ_CheckedChanged(object sender, EventArgs e)
+        {
+            g.FillRectangle(Brushes.Black, background);
         }
     }
 
